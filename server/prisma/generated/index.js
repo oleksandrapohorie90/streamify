@@ -132,7 +132,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/alexasky111/streamify/server/prisma/generated",
+      "value": "/Users/gulnurkaztai/PROJECTS/streamify/server/prisma/generated",
       "fromEnvVar": null
     },
     "config": {
@@ -146,12 +146,11 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/alexasky111/streamify/server/prisma/schema.prisma",
+    "sourceFilePath": "/Users/gulnurkaztai/PROJECTS/streamify/server/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": "../../.env",
-    "schemaEnvPath": "../../.env"
+    "rootEnvPath": null
   },
   "relativePath": "..",
   "clientVersion": "6.6.0",
@@ -160,11 +159,12 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "POSTGRES_URI",
-        "value": "postgresql://postgres:password123@localhost:5433/streamify"
+        "value": null
       }
     }
   },
