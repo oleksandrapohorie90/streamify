@@ -4,7 +4,7 @@ import { NestFactory } from '@nestjs/core';
 import RedisStore from 'connect-redis';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
-import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
+import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.mjs';
 
 // Core NestJS module
 import { CoreModule } from './core/core.module';
@@ -27,6 +27,8 @@ async function bootstrap() {
 
   // Access Redis client (custom service)
   const redis = app.get(RedisService);
+
+
 
   /**
    * MIDDLEWARE: cookie-parser
@@ -67,10 +69,10 @@ async function bootstrap() {
         secure: parseBoolean(config.getOrThrow<string>('SESSION_SECURE')), // Only send cookie over HTTPS
         sameSite: 'lax', // Helps prevent CSRF
       },
-      store: new RedisStore({
-        client: redis, // Redis client from our service
-        prefix: config.getOrThrow<string>('SESSION_FOLDER'), // Prefix for Redis keys
-        ttl: ms(config.getOrThrow<StringValue>('REDIS_TTL')), // Time to live for Redis keys
+      store: new RedisStore({ 
+        client: redis,
+        prefix: config.getOrThrow<string>('SESSION_FOLDER'),
+        ttl: ms(config.getOrThrow<StringValue>('REDIS_TTL')) / 1000, // important: seconds not ms
       }),
     }),
   );

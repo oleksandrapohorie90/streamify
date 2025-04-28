@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { RedisService } from './redis.service';
-import { CreateRediDto } from './dto/create-redi.dto';
-import { UpdateRediDto } from './dto/update-redi.dto';
+import { CreateRediDto } from './dto/create-redis.dto';
+import { UpdateRediDto } from './dto/update-redis.dto';
 
 @Controller('redis')
 export class RedisController {
