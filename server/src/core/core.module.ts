@@ -11,3 +11,4 @@ GraphQLModule.forRootAsync({
     inject: [ConfigService]
   }),
   PrismaModule
+
