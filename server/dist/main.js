@@ -6,7 +6,7 @@ const core_1 = require("@nestjs/core");
 const connect_redis_1 = require("connect-redis");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
-const graphqlUploadExpress = require("graphql-upload/graphqlUploadExpress.mjs");
+const graphqlUploadExpress_js_1 = require("graphql-upload/graphqlUploadExpress.js");
 const core_module_1 = require("./core/core.module");
 const redis_service_1 = require("./core/redis/redis.service");
 const ms_util_1 = require("./shared/utils/ms.util");
@@ -16,7 +16,7 @@ async function bootstrap() {
     const config = app.get(config_1.ConfigService);
     const redis = app.get(redis_service_1.RedisService);
     app.use(cookieParser(config.getOrThrow('COOKIES_SECRET')));
-    app.use(config.getOrThrow('GRAPHQL_PREFIX'), graphqlUploadExpress());
+    app.use(config.getOrThrow('GRAPHQL_PREFIX'), (0, graphqlUploadExpress_js_1.default)());
     app.useGlobalPipes(new common_1.ValidationPipe({
         transform: true,
     }));

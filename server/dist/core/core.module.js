@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CoreModule = void 0;
+const apollo_1 = require("@nestjs/apollo");
 const config_1 = require("@nestjs/config");
 const graphql_1 = require("@nestjs/graphql");
 const common_1 = require("@nestjs/common");
@@ -20,10 +21,13 @@ exports.CoreModule = CoreModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
-            graphql_1.GraphQLModule.forRootAsync({}),
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                autoSchemaFile: true,
+            }),
             prisma_module_1.PrismaModule,
             account_module_1.AccountModule,
-            redis_module_1.RedisModule
+            redis_module_1.RedisModule,
         ],
     })
 ], CoreModule);

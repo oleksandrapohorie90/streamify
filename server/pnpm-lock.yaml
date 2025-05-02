@@ -42,11 +42,14 @@ importers:
         specifier: ^0.14.1
         version: 0.14.1
       connect-redis:
-        specifier: ^8.0.3
-        version: 8.0.3(express-session@1.18.1)
+        specifier: ^7.1.1
+        version: 7.1.1(express-session@1.18.1)
       cookie-parser:
         specifier: ^1.4.7
         version: 1.4.7
+      dotenv:
+        specifier: ^16.5.0
+        version: 16.5.0
       express-session:
         specifier: ^1.18.1
         version: 1.18.1
@@ -54,8 +57,8 @@ importers:
         specifier: ^16.10.0
         version: 16.10.0
       graphql-upload:
-        specifier: ^17.0.0
-        version: 17.0.0(@types/express@5.0.1)(graphql@16.10.0)
+        specifier: ^14.0.0
+        version: 14.0.0(@types/express@5.0.1)(graphql@16.10.0)
       ioredis:
         specifier: ^5.6.1
         version: 5.6.1
@@ -1374,8 +1377,8 @@ packages:
   '@types/body-parser@1.19.5':
     resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
-  '@types/busboy@1.5.4':
-    resolution: {integrity: sha512-kG7WrUuAKK0NoyxfQHsVE6j1m01s6kMma64E+OZenQABMQyTJop1DumUWcLwAQ2JzpefU7PDYoRDKl8uZosFjw==}
+  '@types/busboy@0.3.5':
+    resolution: {integrity: sha512-ZFAS63bEBepOMEubHooylhwA4BcN2z/lhuJ/MkZXT4079za5kODWTmGZRDEUIoUbw2g/7NBe/ZxRSTK0yrPkgA==}
 
   '@types/connect@3.4.38':
     resolution: {integrity: sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==}
@@ -1831,6 +1834,10 @@ packages:
   buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
 
+  busboy@0.3.1:
+    resolution: {integrity: sha512-y7tTxhGKXcyBxRKAni+awqx8uqaJKrSFSNFSeRG5CsWNdmy2BIK+6VGWEW7TZnIO/533mtMEA4rOevQV815YJw==}
+    engines: {node: '>=4.5.0'}
+
   busboy@1.6.0:
     resolution: {integrity: sha512-8SFQbg/0hQ9xy3UNTB0YEnsNBbWfhf7RtnzpL7TkBiTBRfrQ9Fxcnz7VJsleJpyp6rVLvXiuORqjlHi5q+PYuA==}
     engines: {node: '>=10.16.0'}
@@ -1977,9 +1984,9 @@ packages:
     resolution: {integrity: sha512-27HBghJxjiZtIk3Ycvn/4kbJk/1uZuJFfuPEns6LaEvpvG1f0hTea8lilrouyo9mVc2GWdcEZ8OLoGmSADlrCw==}
     engines: {'0': node >= 0.8}
 
-  connect-redis@8.0.3:
-    resolution: {integrity: sha512-wLIaRv5csDWZsODD/X1vzfF9YKAYVfjJfzxsR6er0jqikM+i4GuBv06kgB8/O3QJWj5ANhYRoym/j1rL459v7g==}
-    engines: {node: '>=18'}
+  connect-redis@7.1.1:
+    resolution: {integrity: sha512-M+z7alnCJiuzKa8/1qAYdGUXHYfDnLolOGAUjOioB07pP39qxjG+X9ibsud7qUBc4jMV5Mcy3ugGv8eFcgamJQ==}
+    engines: {node: '>=16'}
     peerDependencies:
       express-session: '>=1'
 
@@ -2132,6 +2139,10 @@ packages:
   dezalgo@1.0.4:
     resolution: {integrity: sha512-rXSP0bf+5n0Qonsb+SVVfNfIsimO4HEtmnIpPHY8Q1UCzKlQrDMfdobr8nJOOsRgWCyMRqeSBQzmWUMq7zvVig==}
 
+  dicer@0.3.0:
+    resolution: {integrity: sha512-MdceRRWqltEG2dZqO769g27N/3PXfcKl04VhYnBlo2YhH7zPi88VebsjTKclaOyiuMaGU72hTfw3VkUitGcVCA==}
+    engines: {node: '>=4.5.0'}
+
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -2146,6 +2157,10 @@ packages:
 
   dotenv@16.4.7:
     resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+    engines: {node: '>=12'}
+
+  dotenv@16.5.0:
+    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
 
   dset@3.1.4:
@@ -2483,9 +2498,9 @@ packages:
     resolution: {integrity: sha512-Rx/WycZ60HOaqLKAi6cHRKKI7zxWbJ31MhntmtwMoaTeF7XFH9hhBp8vITaMidfljRQ6eYWCKkaTK+ykVJHP2A==}
     engines: {node: '>= 0.8'}
 
-  fs-capacitor@8.0.0:
-    resolution: {integrity: sha512-+Lk6iSKajdGw+7XYxUkwIzreJ2G1JFlYOdnKJv5PzwFLVsoJYBpCuS7WPIUSNT1IbQaEWT1nhYU63Ud03DyzLA==}
-    engines: {node: ^14.17.0 || >=16.0.0}
+  fs-capacitor@6.2.0:
+    resolution: {integrity: sha512-nKcE1UduoSKX27NSZlg879LdQc94OtbOsEmKMN2MBNudXREvijRKx2GEBsTMTfws+BrbkJoEuynbGSVRSpauvw==}
+    engines: {node: '>=10'}
 
   fs-extra@10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
@@ -2585,11 +2600,11 @@ packages:
     peerDependencies:
       graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
 
-  graphql-upload@17.0.0:
-    resolution: {integrity: sha512-AI42S1UR1mdqg+LQ7KqGbrgcf4l9gpPu/R0drM4vSA5C94NfIjYyCeCdpktEledvZoAL8JURLLeB53++WACo1w==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=22.0.0}
+  graphql-upload@14.0.0:
+    resolution: {integrity: sha512-l3utaN0p/VLUFFrUAijwEfmsSxEolVri5uuD91yhbOkxRD6q5l0rsy1F4Naq4TKWFSKsGciCjyrc1ZhCT2Ew7A==}
+    engines: {node: ^14.17.0 || ^16.0.0 || >= 18.0.0}
     peerDependencies:
-      '@types/express': 4.0.29 - 5
+      '@types/express': ^4.0.29
       '@types/koa': ^2.11.4
       graphql: ^16.3.0
     peerDependenciesMeta:
@@ -3696,6 +3711,10 @@ packages:
   statuses@2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
+
+  streamsearch@0.1.2:
+    resolution: {integrity: sha512-jos8u++JKm0ARcSUTAZXOVC0mSox7Bhn6sBgty73P1f3JGf7yG2clTbBNHUdde/kdvP2FESam+vM6l8jBrNxHA==}
+    engines: {node: '>=0.8.0'}
 
   streamsearch@1.1.0:
     resolution: {integrity: sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==}
@@ -5469,7 +5488,7 @@ snapshots:
       '@types/connect': 3.4.38
       '@types/node': 22.14.1
 
-  '@types/busboy@1.5.4':
+  '@types/busboy@0.3.5':
     dependencies:
       '@types/node': 22.14.1
 
@@ -6079,6 +6098,10 @@ snapshots:
       base64-js: 1.5.1
       ieee754: 1.2.1
 
+  busboy@0.3.1:
+    dependencies:
+      dicer: 0.3.0
+
   busboy@1.6.0:
     dependencies:
       streamsearch: 1.1.0
@@ -6207,7 +6230,7 @@ snapshots:
       readable-stream: 2.3.8
       typedarray: 0.0.6
 
-  connect-redis@8.0.3(express-session@1.18.1):
+  connect-redis@7.1.1(express-session@1.18.1):
     dependencies:
       express-session: 1.18.1
 
@@ -6328,15 +6351,21 @@ snapshots:
       asap: 2.0.6
       wrappy: 1.0.2
 
+  dicer@0.3.0:
+    dependencies:
+      streamsearch: 0.1.2
+
   diff-sequences@29.6.3: {}
 
   diff@4.0.2: {}
 
   dotenv-expand@12.0.1:
     dependencies:
-      dotenv: 16.4.7
+      dotenv: 16.5.0
 
   dotenv@16.4.7: {}
+
+  dotenv@16.5.0: {}
 
   dset@3.1.4: {}
 
@@ -6802,7 +6831,7 @@ snapshots:
 
   fresh@2.0.0: {}
 
-  fs-capacitor@8.0.0: {}
+  fs-capacitor@6.2.0: {}
 
   fs-extra@10.1.0:
     dependencies:
@@ -6909,13 +6938,13 @@ snapshots:
       graphql: 16.10.0
       tslib: 2.8.1
 
-  graphql-upload@17.0.0(@types/express@5.0.1)(graphql@16.10.0):
+  graphql-upload@14.0.0(@types/express@5.0.1)(graphql@16.10.0):
     dependencies:
-      '@types/busboy': 1.5.4
+      '@types/busboy': 0.3.5
       '@types/node': 22.14.1
       '@types/object-path': 0.11.4
-      busboy: 1.6.0
-      fs-capacitor: 8.0.0
+      busboy: 0.3.1
+      fs-capacitor: 6.2.0
       graphql: 16.10.0
       http-errors: 2.0.0
       object-path: 0.11.8
@@ -8102,6 +8131,8 @@ snapshots:
   standard-as-callback@2.1.0: {}
 
   statuses@2.0.1: {}
+
+  streamsearch@0.1.2: {}
 
   streamsearch@1.1.0: {}
 
