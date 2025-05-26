@@ -22,43 +22,43 @@ export class SessionService {
 		private readonly configService: ConfigService,
 	) {}
 
-	// public async login(req: Request, input: LoginInput, userAgent: string) {
-	// 	const { login, password } = input
+	public async login(req: Request, input: LoginInput, userAgent: string) {
+		const { login, password } = input
 
-	// 	const user = await this.prismaService.user.findFirst({
-	// 		where: {
-	// 			OR: [
-	// 				{ username: { equals: login } },
-	// 				{ email: { equals: login } }
-	// 			]
-	// 		},
-	// 		// select: {
-	// 		// 	id: true,
-	// 		// 	username: true,
-	// 		// 	email: true,
-	// 		// 	password: true,
-	// 		// 	displayName: true,
-	// 		// 	avatar: true,
-	// 		// 	bio: true,
-	// 		// 	createdAt: true,
-	// 		// 	updatedAt: true,
-	// 		// 	isDeactivated: true,
-	// 		// 	deactivatedAt: true
-	// 		// }
-	// 	})
+		const user = await this.prismaService.user.findFirst({
+			where: {
+				OR: [
+					{ username: { equals: login } },
+					{ email: { equals: login } }
+				]
+			},
+			// select: {
+			// 	id: true,
+			// 	username: true,
+			// 	email: true,
+			// 	password: true,
+			// 	displayName: true,
+			// 	avatar: true,
+			// 	bio: true,
+			// 	createdAt: true,
+			// 	updatedAt: true,
+			// 	isDeactivated: true,
+			// 	deactivatedAt: true
+			// }
+		})
 
-	// 	if (!user) {
-	// 		throw new NotFoundException('Пользователь не найден')
-	// 	}
+		if (!user) {
+			throw new NotFoundException('Пользователь не найден')
+		}
 
-	// 	const isValidPassword = await verify(user.password, password)
+		const isValidPassword = await verify(user.password, password)
 
-	// 	if (!isValidPassword) {
-	// 		throw new UnauthorizedException('Неверный пароль')
-	// 	}
+		if (!isValidPassword) {
+			throw new UnauthorizedException('Неверный пароль')
+		}
 
-	// 	return saveSession(req, user)
-	// }
+		return saveSession(req, user)
+	}
 
 	public async logout(req: Request) {
 		return destroySession(req, this.configService)

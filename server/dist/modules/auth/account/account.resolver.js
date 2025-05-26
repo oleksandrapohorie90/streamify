@@ -18,7 +18,6 @@ const account_service_1 = require("./account.service");
 const user_model_1 = require("./models/user.model");
 const create_user_input_1 = require("./inputs/create-user.input");
 let AccountResolver = class AccountResolver {
-    accountService;
     constructor(accountService) {
         this.accountService = accountService;
     }
@@ -37,14 +36,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AccountResolver.prototype, "findAll", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => user_model_1.UserModel, { name: 'createUser' }),
+    (0, graphql_1.Mutation)(() => Boolean, { name: 'createUser' }),
     __param(0, (0, graphql_1.Args)('data')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_input_1.CreateUserInput]),
     __metadata("design:returntype", Promise)
 ], AccountResolver.prototype, "create", null);
 exports.AccountResolver = AccountResolver = __decorate([
-    (0, graphql_1.Resolver)(() => user_model_1.UserModel),
+    (0, graphql_1.Resolver)('Account'),
     __metadata("design:paramtypes", [account_service_1.AccountService])
 ], AccountResolver);
 //# sourceMappingURL=account.resolver.js.map

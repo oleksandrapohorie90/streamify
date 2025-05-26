@@ -13,7 +13,6 @@ exports.SessionResolver = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const session_service_1 = require("./session.service");
 let SessionResolver = class SessionResolver {
-    sessionService;
     constructor(sessionService) {
         this.sessionService = sessionService;
     }

@@ -12,13 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SessionService = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
+const argon2_1 = require("argon2");
 const prisma_service_1 = require("../core/prisma/prisma.service");
 const redis_service_1 = require("../core/redis/redis.service");
 const session_util_1 = require("../shared/utils/session.util");
 let SessionService = class SessionService {
-    prismaService;
-    redisService;
-    configService;
     constructor(prismaService, redisService, configService) {
         this.prismaService = prismaService;
         this.redisService = redisService;
@@ -32,13 +30,12 @@ let SessionService = class SessionService {
                     { username: { equals: login } },
                     { email: { equals: login } }
                 ]
-            }
+            },
         });
-        if (!user || user.isDeactivated) {
+        if (!user) {
             throw new common_1.NotFoundException('Пользователь не найден');
         }
-        const isValidPassword = apnpm, wait, verify;
-        (user.password, password);
+        const isValidPassword = await (0, argon2_1.verify)(user.password, password);
         if (!isValidPassword) {
             throw new common_1.UnauthorizedException('Неверный пароль');
         }

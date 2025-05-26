@@ -18,7 +18,6 @@ const redis_service_1 = require("./redis.service");
 const create_redis_dto_1 = require("./dto/create-redis.dto");
 const update_redis_dto_1 = require("./dto/update-redis.dto");
 let RedisController = class RedisController {
-    redisService;
     constructor(redisService) {
         this.redisService = redisService;
     }
