@@ -16,7 +16,7 @@ async function bootstrap() {
     const config = app.get(config_1.ConfigService);
     const redis = app.get(redis_service_1.RedisService);
     app.use(cookieParser(config.getOrThrow('COOKIES_SECRET')));
-    app.use(config.getOrThrow('GRAPHQL_PREFIX'), (0, graphqlUploadExpress_js_1.default)());
+    app.use(config.getOrThrow('GRAPHQL_PREFIX'), (0, graphqlUploadExpress_js_1.graphqlUploadExpress)());
     app.useGlobalPipes(new common_1.ValidationPipe({
         transform: true,
     }));
