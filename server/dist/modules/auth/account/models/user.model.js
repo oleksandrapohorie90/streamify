@@ -12,15 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserModel = void 0;
 const graphql_1 = require("@nestjs/graphql");
 let UserModel = class UserModel {
-    id;
-    email;
-    password;
-    username;
-    displayName;
-    avatar;
-    bio;
-    createdAt;
-    updatedAt;
 };
 exports.UserModel = UserModel;
 __decorate([

@@ -13,8 +13,6 @@ exports.LoginInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const class_validator_1 = require("class-validator");
 let LoginInput = class LoginInput {
-    login;
-    password;
 };
 exports.LoginInput = LoginInput;
 __decorate([

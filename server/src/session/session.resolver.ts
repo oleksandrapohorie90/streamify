@@ -1,9 +1,38 @@
-import { Resolver } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Context } from '@nestjs/graphql';
 import { SessionService } from './session.service';
+import { LoginInput } from './inputs/login.input';
+import { UserModel } from '../modules/auth/account/models/user.model';
+import type { GqlContext } from '../shared/types/gql-context.types';
+// @Resolver('Session')
+// export class SessionResolver {
+//   public constructor(private readonly sessionService: SessionService) {}
 
-@Resolver('Session')
+@Resolver()
 export class SessionResolver {
-  public constructor(private readonly sessionService: SessionService) {}
+  constructor(private readonly sessionService: SessionService) {}
+
+  @Mutation(() => UserModel)
+  async loginUser(
+    @Args('input') input: LoginInput,
+    @Context() context: GqlContext,
+  ) {
+    const { req } = context;
+    const userAgent = req.headers['user-agent'] || 'unknown';
+
+    const result = await this.sessionService.login(req, input, userAgent);
+    return result.user;
+  }
+
+  @Mutation(() => Boolean)
+  async logoutUser(@Context() context: GqlContext): Promise<boolean> {
+    const { req } = context;
+    await this.sessionService.logout(req);
+    return true;
+  }
+  }
+
+  //1. go to http://localhost:4000/graphql
+// 2. execute mutation
 
   // @Authorization()
 	// @Query(() => [SessionModel], { name: 'findSessionsByUser' })
@@ -45,4 +74,4 @@ export class SessionResolver {
 	// ) {
 	// 	return this.sessionService.remove(req, id)
 	// }
-}
+

@@ -1,19 +1,23 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Query, Mutation, Args, Resolver } from '@nestjs/graphql';
 import { AccountService } from './account.service';
-import { UserModel } from './models/user.model';
+import { UserModel } from './models/user.model'
 import { CreateUserInput } from './inputs/create-user.input';
 
-@Resolver(() => UserModel)
+@Resolver('Account')
 export class AccountResolver {
-  constructor(private readonly accountService: AccountService) {}
+  public constructor(private readonly accountService: AccountService) {}
 
-  @Query(() => [UserModel], { name: 'findAllUsers' })
-  public async findAll(): Promise<UserModel[]> {
-    return this.accountService.findAll();
+ @Query(() => [UserModel], { name: 'findAllUsers' }) // get
+  public async findAll() {
+    return this.accountService.findAll()
   }
 
+  // @Mutation(() => Boolean, { name: 'createUser' }) // all others
+  // public async create(@Args('data') input: CreateUserInput) {
+  //   return this.accountService.create(input);
+  // }
   @Mutation(() => UserModel, { name: 'createUser' })
-  public async create(@Args('data') input: CreateUserInput): Promise<UserModel> {
-    return this.accountService.create(input);
-  }
+public async create(@Args('data') input: CreateUserInput) {
+  return this.accountService.create(input);
+}
 }

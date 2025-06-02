@@ -104,7 +104,7 @@ import { NestFactory } from '@nestjs/core';
 import RedisStore from 'connect-redis';
 import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
-import { graphqlUploadExpress } from 'graphql-upload/graphqlUploadExpress.js';
+import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 // Core NestJS module
 import { CoreModule } from './core/core.module';
 

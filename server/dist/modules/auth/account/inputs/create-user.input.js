@@ -13,9 +13,6 @@ exports.CreateUserInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const class_validator_1 = require("class-validator");
 let CreateUserInput = class CreateUserInput {
-    username;
-    email;
-    password;
 };
 exports.CreateUserInput = CreateUserInput;
 __decorate([

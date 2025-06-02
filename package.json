@@ -1,9 +1,0 @@
-{
-	"dependencies": {
-		"graphql": "^16.10.0",
-		"graphql-upload": "^17.0.0"
-	},
-	"devDependencies": {
-		"@types/graphql-upload": "^17.0.0"
-	}
-}
