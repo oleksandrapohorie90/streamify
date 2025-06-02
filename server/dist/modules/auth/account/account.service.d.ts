@@ -25,5 +25,15 @@ export declare class AccountService {
         createdAt: Date;
         updatedAt: Date;
     }>;
-    create(input: CreateUserInput): Promise<boolean>;
+    create(input: CreateUserInput): Promise<{
+        username: string;
+        email: string;
+        password: string;
+        id: string;
+        displayName: string;
+        avatar: string | null;
+        bio: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
 }

@@ -15,20 +15,15 @@ export class AccountService {
 		return users
 	}
 
-	public async me(id: string) {
-		const user = await this.prismaService.user.findUnique({
-			where: {
-				id
-			},
-			// include: {
-			// 	socialLinks: true,
-			// 	stream: true,
-			// 	notificationSettings: true
-			// }
-		})
-
-		return user
-	}
+	// Add this method to retrieve current user
+public async me(id: string) {
+	const user = await this.prismaService.user.findUnique({
+		where: {
+			id,
+		},
+	})
+	return user
+}
 
 	public async create(input: CreateUserInput) {
 		const { username, email, password } = input
@@ -69,8 +64,8 @@ export class AccountService {
 				// }
 			}
 		})
-
-		return true
+//linked to account.resolver.ts and return type must match, UserModel was Boolean
+		return user
 	}
 
 	

@@ -12,8 +12,12 @@ export class AccountResolver {
     return this.accountService.findAll()
   }
 
-  @Mutation(() => Boolean, { name: 'createUser' }) // all others
-  public async create(@Args('data') input: CreateUserInput) {
-    return this.accountService.create(input);
-  }
+  // @Mutation(() => Boolean, { name: 'createUser' }) // all others
+  // public async create(@Args('data') input: CreateUserInput) {
+  //   return this.accountService.create(input);
+  // }
+  @Mutation(() => UserModel, { name: 'createUser' })
+public async create(@Args('data') input: CreateUserInput) {
+  return this.accountService.create(input);
+}
 }

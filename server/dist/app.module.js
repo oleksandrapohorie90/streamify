@@ -13,12 +13,34 @@ const app_service_1 = require("./app.service");
 const redis_module_1 = require("./core/redis/redis.module");
 const account_module_1 = require("./modules/auth/account/account.module");
 const session_module_1 = require("./session/session.module");
+const graphql_1 = require("@nestjs/graphql");
+const apollo_1 = require("@nestjs/apollo");
+const path_1 = require("path");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
-        imports: [redis_module_1.RedisModule, account_module_1.AccountModule, session_module_1.SessionModule],
+        imports: [
+            graphql_1.GraphQLModule.forRoot({
+                driver: apollo_1.ApolloDriver,
+                autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
+                context: ({ req, res }) => ({ req, res }),
+                formatError: (error) => {
+                    const statusCode = error?.originalError?.status ||
+                        error?.originalError?.statusCode ||
+                        500;
+                    return {
+                        message: error.message,
+                        path: error.path,
+                        statusCode,
+                    };
+                },
+            }),
+            redis_module_1.RedisModule,
+            account_module_1.AccountModule,
+            session_module_1.SessionModule,
+        ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService],
     })

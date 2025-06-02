@@ -55,7 +55,7 @@ let AccountService = class AccountService {
                 displayName: username,
             }
         });
-        return true;
+        return user;
     }
 };
 exports.AccountService = AccountService;
