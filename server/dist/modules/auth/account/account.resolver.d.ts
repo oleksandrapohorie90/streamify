@@ -14,7 +14,7 @@ export declare class AccountResolver {
         createdAt: Date;
         updatedAt: Date;
     }[]>;
-    create(input: CreateUserInput): Promise<{
+    me(id: string): Promise<{
         username: string;
         email: string;
         password: string;
@@ -25,4 +25,5 @@ export declare class AccountResolver {
         createdAt: Date;
         updatedAt: Date;
     }>;
+    create(input: CreateUserInput): Promise<boolean>;
 }

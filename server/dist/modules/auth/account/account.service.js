@@ -24,7 +24,7 @@ let AccountService = class AccountService {
     async me(id) {
         const user = await this.prismaService.user.findUnique({
             where: {
-                id
+                id,
             },
         });
         return user;
@@ -55,7 +55,7 @@ let AccountService = class AccountService {
                 displayName: username,
             }
         });
-        return user;
+        return true;
     }
 };
 exports.AccountService = AccountService;

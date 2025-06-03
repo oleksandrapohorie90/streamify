@@ -17,12 +17,17 @@ const graphql_1 = require("@nestjs/graphql");
 const account_service_1 = require("./account.service");
 const user_model_1 = require("./models/user.model");
 const create_user_input_1 = require("./inputs/create-user.input");
+const auth_decorator_1 = require("../../../shared/decorators/auth.decorator");
+const authorized_decorator_1 = require("../../../shared/decorators/authorized.decorator");
 let AccountResolver = class AccountResolver {
     constructor(accountService) {
         this.accountService = accountService;
     }
     async findAll() {
         return this.accountService.findAll();
+    }
+    async me(id) {
+        return this.accountService.me(id);
     }
     async create(input) {
         return this.accountService.create(input);
@@ -36,7 +41,15 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AccountResolver.prototype, "findAll", null);
 __decorate([
-    (0, graphql_1.Mutation)(() => user_model_1.UserModel, { name: 'createUser' }),
+    (0, auth_decorator_1.Authorization)(),
+    (0, graphql_1.Query)(() => user_model_1.UserModel, { name: 'findProfile' }),
+    __param(0, (0, authorized_decorator_1.Authorized)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], AccountResolver.prototype, "me", null);
+__decorate([
+    (0, graphql_1.Mutation)(() => Boolean, { name: 'createUser' }),
     __param(0, (0, graphql_1.Args)('data')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_user_input_1.CreateUserInput]),

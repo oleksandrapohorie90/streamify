@@ -26,16 +26,6 @@ exports.AppModule = AppModule = __decorate([
                 driver: apollo_1.ApolloDriver,
                 autoSchemaFile: (0, path_1.join)(process.cwd(), 'src/schema.gql'),
                 context: ({ req, res }) => ({ req, res }),
-                formatError: (error) => {
-                    const statusCode = error?.originalError?.status ||
-                        error?.originalError?.statusCode ||
-                        500;
-                    return {
-                        message: error.message,
-                        path: error.path,
-                        statusCode,
-                    };
-                },
             }),
             redis_module_1.RedisModule,
             account_module_1.AccountModule,
