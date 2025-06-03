@@ -65,7 +65,7 @@ public async me(id: string) {
 			}
 		})
 //linked to account.resolver.ts and return type must match, UserModel was Boolean
-		return user
+		return true
 	}
 
 	

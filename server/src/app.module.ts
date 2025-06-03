@@ -21,18 +21,18 @@ import { join } from 'path';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       context: ({ req, res }) => ({ req, res }),
-      formatError: (error: any) => {
-        const statusCode =
-          error?.originalError?.status ||
-          error?.originalError?.statusCode ||
-          500;
+      // formatError: (error: any) => {
+      //   const statusCode =
+      //     error?.originalError?.status ||
+      //     error?.originalError?.statusCode ||
+      //     500;
       
-        return {
-          message: error.message,
-          path: error.path,
-          statusCode,
-        };
-      },
+      //   return {
+      //     message: error.message,
+      //     path: error.path,
+      //     statusCode,
+      //   };
+      // },
     }),
     RedisModule,
     AccountModule,
