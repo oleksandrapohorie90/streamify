@@ -28,6 +28,13 @@ __decorate([
     (0, class_validator_1.MinLength)(8),
     __metadata("design:type", String)
 ], LoginInput.prototype, "password", void 0);
+__decorate([
+    (0, graphql_1.Field)(() => String, { nullable: true }),
+    (0, class_validator_1.IsString)(),
+    (0, class_validator_1.IsOptional)(),
+    (0, class_validator_1.Length)(6, 6),
+    __metadata("design:type", String)
+], LoginInput.prototype, "pin", void 0);
 exports.LoginInput = LoginInput = __decorate([
     (0, graphql_1.InputType)()
 ], LoginInput);

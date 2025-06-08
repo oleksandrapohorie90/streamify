@@ -5,10 +5,10 @@ export declare class SessionResolver {
     private readonly sessionService;
     constructor(sessionService: SessionService);
     loginUser(input: LoginInput, context: GqlContext): Promise<{
-        username: string;
+        id: string;
         email: string;
         password: string;
-        id: string;
+        username: string;
         displayName: string;
         avatar: string | null;
         bio: string | null;

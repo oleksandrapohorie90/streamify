@@ -8,10 +8,10 @@ export declare class SessionService {
     constructor(prisma: PrismaService, configService: ConfigService);
     login(req: Request, input: LoginInput, userAgent: string): Promise<{
         user: {
-            username: string;
+            id: string;
             email: string;
             password: string;
-            id: string;
+            username: string;
             displayName: string;
             avatar: string | null;
             bio: string | null;
