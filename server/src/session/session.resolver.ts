@@ -16,7 +16,7 @@ export class SessionResolver {
     const { req } = context;
     const userAgent = req.headers['user-agent'] || 'unknown';
 
-    const result = await this.sessionService.login(req, input, userAgent);
+    const result = await this.sessionService.login(req, input, userAgent) as { user: UserModel };
     return result.user;
   }
 
