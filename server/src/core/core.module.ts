@@ -7,20 +7,15 @@ import { PrismaModule } from '../core/prisma/prisma.module';
 import { AccountModule } from '../modules/auth/account/account.module';
 import { RedisModule } from './redis/redis.module';
 
-// GraphQLModule.forRootAsync({
-//     driver: ApolloDriver,
-//     imports: [ConfigModule],
-//     useFactory: getGraphQLConfig,
-//     inject: [ConfigService]
-//   }),
-//   PrismaModule
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
-    GraphQLModule.forRoot<ApolloDriverConfig>({
+    GraphQLModule.forRootAsync({
       driver: ApolloDriver,
-      autoSchemaFile: true,
+      imports: [ConfigModule],
+      useFactory: getGraphQLConfig,
+      inject: [ConfigService]
     }),
     PrismaModule,
     AccountModule,

@@ -3,9 +3,6 @@ import { SessionService } from './session.service';
 import { LoginInput } from './inputs/login.input';
 import { UserModel } from '../modules/auth/account/models/user.model';
 import type { GqlContext } from '../shared/types/gql-context.types';
-// @Resolver('Session')
-// export class SessionResolver {
-//   public constructor(private readonly sessionService: SessionService) {}
 
 @Resolver()
 export class SessionResolver {
@@ -19,7 +16,7 @@ export class SessionResolver {
     const { req } = context;
     const userAgent = req.headers['user-agent'] || 'unknown';
 
-    const result = await this.sessionService.login(req, input, userAgent);
+    const result = await this.sessionService.login(req, input, userAgent) as { user: UserModel };
     return result.user;
   }
 
@@ -31,47 +28,48 @@ export class SessionResolver {
   }
   }
 
-  //1. go to http://localhost:4000/graphql
-// 2. execute mutation
-
-  // @Authorization()
-	// @Query(() => [SessionModel], { name: 'findSessionsByUser' })
-	// public async findByUser(@Context() { req }: GqlContext) {
-	// 	return this.sessionService.findByUser(req)
-	// }
-
-	// @Authorization()
-	// @Query(() => SessionModel, { name: 'findCurrentSession' })
-	// public async findCurrent(@Context() { req }: GqlContext) {
-	// 	return this.sessionService.findCurrent(req)
-	// }
-
-	// @Mutation(() => AuthModel, { name: 'loginUser' })
-	// public async login(
-	// 	@Context() { req }: GqlContext,
-	// 	@Args('data') input: LoginInput,
-	// 	@UserAgent() userAgent: string
-	// ) {
-	// 	return this.sessionService.login(req, input, userAgent)
-	// }
-
-	// @Authorization()
-	// @Mutation(() => Boolean, { name: 'logoutUser' })
-	// public async logout(@Context() { req }: GqlContext) {
-	// 	return this.sessionService.logout(req)
-	// }
-
-	// @Mutation(() => Boolean, { name: 'clearSessionCookie' })
-	// public async clearSession(@Context() { req }: GqlContext) {
-	// 	return this.sessionService.clearSession(req)
-	// }
-
-	// @Authorization()
-	// @Mutation(() => Boolean, { name: 'removeSession' })
-	// public async remove(
-	// 	@Context() { req }: GqlContext,
-	// 	@Args('id') id: string
-	// ) {
-	// 	return this.sessionService.remove(req, id)
-	// }
-
+  
+//   @Resolver('Session')
+//   export class SessionResolver {
+// 	  public constructor(private readonly sessionService: SessionService) {}
+  
+// 	  @Authorization()
+// 	  @Query(() => [SessionModel], { name: 'findSessionsByUser' })
+// 	  public async findByUser(@Context() { req }: GqlContext) {
+// 		  return this.sessionService.findByUser(req)
+// 	  }
+  
+// 	  @Authorization()
+// 	  @Query(() => SessionModel, { name: 'findCurrentSession' })
+// 	  public async findCurrent(@Context() { req }: GqlContext) {
+// 		  return this.sessionService.findCurrent(req)
+// 	  }
+  
+// 	  @Mutation(() => AuthModel, { name: 'loginUser' })
+// 	  public async login(
+// 		  @Context() { req }: GqlContext,
+// 		  @Args('data') input: LoginInput,
+// 		  @UserAgent() userAgent: string
+// 	  ) {
+// 		  return this.sessionService.login(req, input, userAgent)
+// 	  }
+  
+// 	  @Authorization()
+// 	  @Mutation(() => Boolean, { name: 'logoutUser' })
+// 	  public async logout(@Context() { req }: GqlContext) {
+// 		  return this.sessionService.logout(req)
+// 	  }
+  
+// 	  @Mutation(() => Boolean, { name: 'clearSessionCookie' })
+// 	  public async clearSession(@Context() { req }: GqlContext) {
+// 		  return this.sessionService.clearSession(req)
+// 	  }
+  
+// 	  @Authorization()
+// 	  @Mutation(() => Boolean, { name: 'removeSession' })
+// 	  public async remove(
+// 		  @Context() { req }: GqlContext,
+// 		  @Args('id') id: string
+// 	  ) {
+// 		  return this.sessionService.remove(req, id)
+// 	  }

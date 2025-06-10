@@ -15,6 +15,7 @@ const config_1 = require("@nestjs/config");
 const argon2_1 = require("argon2");
 const prisma_service_1 = require("../core/prisma/prisma.service");
 const session_util_1 = require("../shared/utils/session.util");
+const session_metadata_util_1 = require("../shared/utils/session-metadata.util");
 let SessionService = class SessionService {
     constructor(prisma, configService) {
         this.prisma = prisma;
@@ -22,23 +23,61 @@ let SessionService = class SessionService {
     }
     async login(req, input, userAgent) {
         const { login, password } = input;
-        const user = await this.prisma.user.findFirst({
+        const user = await this.prismaService.user.findFirst({
             where: {
-                OR: [{ email: login }, { username: login }],
-            },
+                OR: [{ username: login }, { email: login }]
+            }
         });
-        if (!user) {
-            throw new common_1.NotFoundException('Пользователь не найден');
-        }
-        const isValid = await (0, argon2_1.verify)(user.password, password);
-        if (!isValid) {
-            throw new common_1.UnauthorizedException('Неверный пароль');
-        }
-        await (0, session_util_1.saveSession)(req, user);
-        return { user };
+        if (!user)
+            throw new common_1.NotFoundException('User not found');
+        const isValidPassword = await (0, argon2_1.verify)(user.password, password);
+        if (!isValidPassword)
+            throw new common_1.UnauthorizedException('Wrong password');
+        const metadata = (0, session_metadata_util_1.getSessionMetadata)(req, userAgent);
+        return (0, session_util_1.saveSession)(req, user, metadata);
     }
     async logout(req) {
         await (0, session_util_1.destroySession)(req, this.configService);
+        return true;
+    }
+    async findByUser(req) {
+        const userId = req.session.userId;
+        if (!userId)
+            throw new common_1.NotFoundException('User not found');
+        const keys = await this.redisService.keys('*');
+        const userSessions = [];
+        for (const key of keys) {
+            const sessionData = await this.redisService.get(key);
+            if (sessionData) {
+                const session = JSON.parse(sessionData);
+                if (session.userId === userId) {
+                    userSessions.push({
+                        ...session,
+                        id: key.split(':')[1]
+                    });
+                }
+            }
+        }
+        userSessions.sort((a, b) => b.createdAt - a.createdAt);
+        return userSessions.filter(session => session.id !== req.session.id);
+    }
+    async findCurrent(req) {
+        const sessionId = req.session.id;
+        const data = await this.redisService.get(`${this.configService.getOrThrow('SESSION_FOLDER')}${sessionId}`);
+        return {
+            ...JSON.parse(data),
+            id: sessionId
+        };
+    }
+    async clearSession(req) {
+        req.res.clearCookie(this.configService.getOrThrow('SESSION_NAME'));
+        return true;
+    }
+    async remove(req, id) {
+        if (req.session.id === id) {
+            throw new common_1.ConflictException('Cannot delete current session');
+        }
+        await this.redisService.del(`${this.configService.getOrThrow('SESSION_FOLDER')}${id}`);
         return true;
     }
 };

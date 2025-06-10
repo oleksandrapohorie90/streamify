@@ -11,6 +11,7 @@ const apollo_1 = require("@nestjs/apollo");
 const config_1 = require("@nestjs/config");
 const graphql_1 = require("@nestjs/graphql");
 const common_1 = require("@nestjs/common");
+const graphql_config_1 = require("./prisma/config/graphql.config");
 const prisma_module_1 = require("../core/prisma/prisma.module");
 const account_module_1 = require("../modules/auth/account/account.module");
 const redis_module_1 = require("./redis/redis.module");
@@ -21,9 +22,11 @@ exports.CoreModule = CoreModule = __decorate([
     (0, common_1.Module)({
         imports: [
             config_1.ConfigModule.forRoot({ isGlobal: true }),
-            graphql_1.GraphQLModule.forRoot({
+            graphql_1.GraphQLModule.forRootAsync({
                 driver: apollo_1.ApolloDriver,
-                autoSchemaFile: true,
+                imports: [config_1.ConfigModule],
+                useFactory: graphql_config_1.getGraphQLConfig,
+                inject: [config_1.ConfigService]
             }),
             prisma_module_1.PrismaModule,
             account_module_1.AccountModule,
