@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Args, Context } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Context } from '@nestjs/graphql'; //debugged
 import { SessionService } from './session.service';
 import { LoginInput } from './inputs/login.input';
 import { UserModel } from '../modules/auth/account/models/user.model';
@@ -7,10 +7,13 @@ import type { GqlContext } from '../shared/types/gql-context.types';
 @Resolver()
 export class SessionResolver {
   constructor(private readonly sessionService: SessionService) {}
-
-  @Mutation(() => UserModel)
+/**
+ * updated from @Mutation(() => UserModel) to current, ensures it shows in schema.gql like below
+loginUser(input: LoginInput!): UserModel
+ */
+  @Mutation(() => UserModel, { name: 'loginUser' })
   async loginUser(
-    @Args('input') input: LoginInput,
+    @Args('input') input: LoginInput, //modified mutation&query from data to input
     @Context() context: GqlContext,
   ) {
     const { req } = context;

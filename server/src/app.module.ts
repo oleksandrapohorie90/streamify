@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module } from '@nestjs/common'; //debugged
  import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RedisModule } from './core/redis/redis.module';
@@ -19,7 +19,7 @@ import { join } from 'path';
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'), //checked this line
       context: ({ req, res }) => ({ req, res }),
       // formatError: (error: any) => {
       //   const statusCode =
