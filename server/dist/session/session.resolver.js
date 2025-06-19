@@ -35,7 +35,7 @@ let SessionResolver = class SessionResolver {
 };
 exports.SessionResolver = SessionResolver;
 __decorate([
-    (0, graphql_1.Mutation)(() => user_model_1.UserModel),
+    (0, graphql_1.Mutation)(() => user_model_1.UserModel, { name: 'loginUser' }),
     __param(0, (0, graphql_1.Args)('input')),
     __param(1, (0, graphql_1.Context)()),
     __metadata("design:type", Function),
