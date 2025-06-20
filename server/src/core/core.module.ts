@@ -1,12 +1,12 @@
-import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { GraphQLModule } from '@nestjs/graphql';
 import { Module } from '@nestjs/common';
-import { getGraphQLConfig } from './prisma/config/graphql.config';
-import { PrismaModule } from '../core/prisma/prisma.module';
-import { AccountModule } from '../modules/auth/account/account.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { GraphQLModule } from '@nestjs/graphql';
+import { ApolloDriver } from '@nestjs/apollo';
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { getGraphQLConfig } from './config/graphql.config';
 import { RedisModule } from './redis/redis.module';
-
+import { AccountModule } from 'src/modules/auth/account/account.module';
+import { SessionModule } from 'src/session/session.module'; //this line was missing
 
 @Module({
   imports: [
@@ -15,11 +15,12 @@ import { RedisModule } from './redis/redis.module';
       driver: ApolloDriver,
       imports: [ConfigModule],
       useFactory: getGraphQLConfig,
-      inject: [ConfigService]
+      inject: [ConfigService],
     }),
     PrismaModule,
-    AccountModule,
     RedisModule,
+    SessionModule,
+    AccountModule
   ],
 })
 export class CoreModule {}

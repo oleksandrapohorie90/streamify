@@ -6,5 +6,4 @@ export declare class SessionResolver {
     private readonly sessionService;
     constructor(sessionService: SessionService);
     loginUser(input: LoginInput, context: GqlContext): Promise<UserModel>;
-    logoutUser(context: GqlContext): Promise<boolean>;
 }
