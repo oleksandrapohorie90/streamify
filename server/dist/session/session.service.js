@@ -23,7 +23,7 @@ let SessionService = class SessionService {
     }
     async login(req, input, userAgent) {
         const { login, password } = input;
-        const user = await this.prismaService.user.findFirst({
+        const user = await this.prisma.user.findFirst({
             where: {
                 OR: [{ username: login }, { email: login }]
             }
