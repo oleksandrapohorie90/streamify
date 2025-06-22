@@ -5,10 +5,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.RedisService = void 0;
 const common_1 = require("@nestjs/common");
-let RedisService = class RedisService {
+const ioredis_1 = require("ioredis");
+const config_1 = require("@nestjs/config");
+let RedisService = class RedisService extends ioredis_1.default {
+    constructor(configService) {
+        super(configService.getOrThrow('REDIS_URI'));
+        this.configService = configService;
+    }
     create(createRediDto) {
         return 'This action adds a new redi';
     }
@@ -27,6 +36,7 @@ let RedisService = class RedisService {
 };
 exports.RedisService = RedisService;
 exports.RedisService = RedisService = __decorate([
-    (0, common_1.Injectable)()
+    (0, common_1.Injectable)(),
+    __metadata("design:paramtypes", [config_1.ConfigService])
 ], RedisService);
 //# sourceMappingURL=redis.service.js.map
