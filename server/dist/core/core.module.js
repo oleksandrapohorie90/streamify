@@ -7,14 +7,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CoreModule = void 0;
+const common_1 = require("@nestjs/common");
+const prisma_module_1 = require("./prisma/prisma.module");
+const graphql_1 = require("@nestjs/graphql");
 const apollo_1 = require("@nestjs/apollo");
 const config_1 = require("@nestjs/config");
-const graphql_1 = require("@nestjs/graphql");
-const common_1 = require("@nestjs/common");
-const graphql_config_1 = require("./prisma/config/graphql.config");
-const prisma_module_1 = require("../core/prisma/prisma.module");
-const account_module_1 = require("../modules/auth/account/account.module");
+const graphql_config_1 = require("./config/graphql.config");
 const redis_module_1 = require("./redis/redis.module");
+const account_module_1 = require("../modules/auth/account/account.module");
+const session_module_1 = require("../session/session.module");
 let CoreModule = class CoreModule {
 };
 exports.CoreModule = CoreModule;
@@ -26,11 +27,12 @@ exports.CoreModule = CoreModule = __decorate([
                 driver: apollo_1.ApolloDriver,
                 imports: [config_1.ConfigModule],
                 useFactory: graphql_config_1.getGraphQLConfig,
-                inject: [config_1.ConfigService]
+                inject: [config_1.ConfigService],
             }),
             prisma_module_1.PrismaModule,
-            account_module_1.AccountModule,
             redis_module_1.RedisModule,
+            session_module_1.SessionModule,
+            account_module_1.AccountModule
         ],
     })
 ], CoreModule);

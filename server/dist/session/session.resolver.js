@@ -27,28 +27,16 @@ let SessionResolver = class SessionResolver {
         const result = await this.sessionService.login(req, input, userAgent);
         return result.user;
     }
-    async logoutUser(context) {
-        const { req } = context;
-        await this.sessionService.logout(req);
-        return true;
-    }
 };
 exports.SessionResolver = SessionResolver;
 __decorate([
-    (0, graphql_1.Mutation)(() => user_model_1.UserModel, { name: 'loginUser' }),
+    (0, graphql_1.Mutation)(() => user_model_1.UserModel),
     __param(0, (0, graphql_1.Args)('input')),
     __param(1, (0, graphql_1.Context)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [login_input_1.LoginInput, Object]),
     __metadata("design:returntype", Promise)
 ], SessionResolver.prototype, "loginUser", null);
-__decorate([
-    (0, graphql_1.Mutation)(() => Boolean),
-    __param(0, (0, graphql_1.Context)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object]),
-    __metadata("design:returntype", Promise)
-], SessionResolver.prototype, "logoutUser", null);
 exports.SessionResolver = SessionResolver = __decorate([
     (0, graphql_1.Resolver)(),
     __metadata("design:paramtypes", [session_service_1.SessionService])

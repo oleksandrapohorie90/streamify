@@ -16,10 +16,6 @@ async function bootstrap() {
     const config = app.get(config_1.ConfigService);
     const redis = app.get(redis_service_1.RedisService);
     app.use(cookieParser(config.getOrThrow('COOKIES_SECRET')));
-    app.use(config.getOrThrow('GRAPHQL_PREFIX'), graphqlUploadExpress());
-    app.useGlobalPipes(new common_1.ValidationPipe({
-        transform: true,
-    }));
     app.use(session({
         secret: config.getOrThrow('SESSION_SECRET'),
         name: config.getOrThrow('SESSION_NAME'),
@@ -30,18 +26,22 @@ async function bootstrap() {
             maxAge: (0, ms_util_1.ms)(config.getOrThrow('SESSION_MAX_AGE')),
             httpOnly: (0, parse_boolean_util_1.parseBoolean)(config.getOrThrow('SESSION_HTTP_ONLY')),
             secure: (0, parse_boolean_util_1.parseBoolean)(config.getOrThrow('SESSION_SECURE')),
-            sameSite: 'lax',
+            sameSite: 'lax'
         },
         store: new connect_redis_1.default({
             client: redis,
             prefix: config.getOrThrow('SESSION_FOLDER'),
-            ttl: (0, ms_util_1.ms)(config.getOrThrow('REDIS_TTL')) / 1000,
-        }),
+            ttl: (0, ms_util_1.ms)(config.getOrThrow('REDIS_TTL'))
+        })
+    }));
+    app.use(config.getOrThrow('GRAPHQL_PREFIX'), graphqlUploadExpress());
+    app.useGlobalPipes(new common_1.ValidationPipe({
+        transform: true
     }));
     app.enableCors({
         origin: config.getOrThrow('ALLOWED_ORIGIN'),
         credentials: true,
-        exposedHeaders: ['set-cookie'],
+        exposedHeaders: ['set-cookie']
     });
     await app.listen(config.getOrThrow('APPLICATION_PORT'));
     console.log(`✅ Server is running at: ${config.getOrThrow('APPLICATION_URL')}`);

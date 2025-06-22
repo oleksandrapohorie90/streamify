@@ -16,6 +16,7 @@ exports.SessionModule = SessionModule;
 exports.SessionModule = SessionModule = __decorate([
     (0, common_1.Module)({
         providers: [session_resolver_1.SessionResolver, session_service_1.SessionService],
+        exports: [session_service_1.SessionService],
     })
 ], SessionModule);
 //# sourceMappingURL=session.module.js.map

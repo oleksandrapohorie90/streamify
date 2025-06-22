@@ -1,6 +1,10 @@
 import { CreateRediDto } from './dto/create-redis.dto';
 import { UpdateRediDto } from './dto/update-redis.dto';
-export declare class RedisService {
+import Redis from 'ioredis';
+import { ConfigService } from '@nestjs/config';
+export declare class RedisService extends Redis {
+    private readonly configService;
+    constructor(configService: ConfigService);
     create(createRediDto: CreateRediDto): string;
     findAll(): string;
     findOne(id: number): string;
